@@ -15,8 +15,8 @@ urlpatterns = patterns('',
     url  (r"^Bicycle/",include('Bicycle.urls' ),name='Bicycle' ),
     url  (r"^personal/",include('personal.urls' ),name='personal' ),
     url  (r"^tennis/",include('tennis.urls' ),name='tennis' ),
-    url  (r"^signin/", include('account.urls' ),name='signin' ),
-    url  (r"^signup/", include('account.urls' )),
+    url  (r"^account/", include('account.urls' ) ),
+
 
 )
 

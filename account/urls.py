@@ -13,16 +13,10 @@ from django.conf.urls import patterns, url
 from account.views import signin ,signup
 
 urlpatterns = patterns('',
-    url(
-         regex=r'',
-         view=signin,
-         name='signin',
-     ),
-    url(
-        regex=r'',
-        view=signup,
-        name='signup',
-    ),
+    url(r'^signin/$', signin, name='signin'),
+    
+    url(r'^signup/$', signup, name='signup'),
+    
     url(
         regex=r'^logout/$',
         view=logout,

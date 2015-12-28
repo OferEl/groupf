@@ -53,6 +53,6 @@ def signup(request):
         l=user.save()
         return HttpResponseRedirect('/home/')
     else:
-        return HttpResponseRedirect('/signup/')
+        return render(request,'signup.html')
 
     
