@@ -46,25 +46,25 @@
 							<form action="{% url 'signup' %}"  method="post">{% csrf_token %}
 								<div class="top-margin">
 									<label>First Name</label>
-									<input type="text" class="form-control">
+									<input type="text" id=First_name class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Last Name</label>
-									<input type="text" class="form-control">
+									<input type="text" id=Last_name class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Email Address <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text" id=Email class="form-control">
 								</div>
 
 								<div class="row top-margin">
 									<div class="col-sm-6">
 										<label>Password <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="text" id=Password class="form-control">
 									</div>
 									<div class="col-sm-6">
 										<label>Confirm Password <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="text" id=Password2 class="form-control">
 									</div>
 								</div>
 

@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from account.forms import signup_form
 
 
 logger = logging.getLogger(__name__)
@@ -43,6 +44,7 @@ def signup(request):
         password = request.POST['password']
         first_name = request.POST['first_name']
         email = request.POST['email']
+        ls=signup_form.clean_password2()
         user = User.objects.create_user(username, password)
 
 # At this point, user is a User object that has already been saved
