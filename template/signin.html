@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="">
+
+    <title>Team Runner</title>
+	 
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{{ STATIC_URL }}assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}assets/css/font-awesome.min.css">
+    <link href="{{ STATIC_URL }}assets/css/gfit.css" rel="stylesheet">
+    
+
+</head>
+
+
+{% block content %}
+<body>
+ <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand page-scroll" href="{% url 'home' %}">Start Group Fitness</a>
+        		</div>        
+</nav>
+	<!-- Fixed navbar -->
+	{{ user.is_authenticated }}
+	<!-- container -->
+	<div class="container">
+		{% if user.is_authenticated %}
+        <p> {{ user.username }} <a href="{% url 'home' %}"></a>
+         </p>
+        {% else %}
+   
+        {% endif %}
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Sign in</h1>
+				</header>
+				
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3 class="thin text-center">Sign in to your account</h3>
+							<p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="{% url 'signin' %}">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+							<hr>
+							
+							<form action="{% url 'signin' %}"  method="post">{% csrf_token %}
+							    {% if next %}
+                                 <input type="hidden" name="next" value="{{ next }}" />
+                                {% endif %}
+						
+								<div class="top-margin">
+									<label>Username/Email <span class="text-danger">*</span></label>
+									<input type="text" id="username" name="username" class="form-control">
+								</div>
+								<div class="top-margin">
+									<label>Password <span class="text-danger">*</span></label>
+									<input type="password" id="password" name="password" class="form-control">
+									{% if login_failed %}
+                                    <p class="text-danger">Sorry, that login was invalid.  Please try again.</p>
+                                    {% endif %}
+								</div>
+
+								<hr>
+
+								<div class="row">
+									<div class="col-lg-8">
+										<b><a href="">Forgot password?</a></b>
+									</div>
+									<div class="col-lg-4 text-right">
+										<button class="btn btn-action" type="submit">Sign in</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+</body>
+{% endblock %}
+
+<footer>
+{% block footer %}
+
+{% endblock %}
+</footer>
+</html>

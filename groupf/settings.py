@@ -22,7 +22,7 @@ TEMPLATE_DIRS = (
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '4)q9)lm(d^7)+@)ajm7%7=zl&0_yc8pos_=b=^&(4g)s=93c55'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't running with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
