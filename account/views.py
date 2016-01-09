@@ -1,12 +1,13 @@
 import logging
-from django.views.generic import TemplateView
 from django.shortcuts import render_to_response, HttpResponseRedirect,HttpResponse,render
-from django.views.generic import FormView
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from account.forms import signup_form
+from .forms import signup_form
+from django.contrib import messages 
+
+
 
 
 logger = logging.getLogger(__name__)
@@ -26,7 +27,6 @@ def signin(request):
         username = request.POST['username'].replace(' ', '').lower()
         password = request.POST['password']
         user = authenticate(username=username, password=password)
-        
         if user is not None:
             if user.is_active:
                 login(request, user)
@@ -39,21 +39,18 @@ def signin(request):
                               context_instance=RequestContext(request))
     
 def signup(request):
-    if request.POST:
-        username = request.POST['username'].replace(' ', '').lower()
-        password = request.POST['password']
-        first_name = request.POST['first_name']
-        email = request.POST['email']
-        ls=signup_form.clean_password2()
-        user = User.objects.create_user(username, password)
-
-# At this point, user is a User object that has already been saved
-# to the database. You can continue to change its attributes
-# if you want to change other fields.
-        user.first_name = 'Lennon'
-        user.email = '123@gmail.com'
-        l=user.save()
-        return HttpResponseRedirect('/home/')
+    if request.method == "POST":
+        f=signup_form(request.POST)
+        if  f.is_valid():
+            password =request.POST['password']
+            username =request.POST['username']
+            email    =request.POST['email']
+            user = User.objects.create_user(username,email,password)
+            l=user.save()
+            return render(request,'home.html',context_instance=RequestContext(request))
+        else:
+            b= f.errors
+            return render(request,'signup.html',f.errors)
     else:
         return render(request,'signup.html')
 
