@@ -7,22 +7,17 @@ from django.contrib.auth.views import (
     password_reset_confirm,
     password_reset_complete
 )
-
-
 from django.conf.urls import patterns, url
-from account.views import signin ,signup
+from account.views import signin ,signup , profile,logout_user
 
 urlpatterns = patterns('',
     url(r'^signin/$', signin, name='signin'),
     
     url(r'^signup/$', signup, name='signup'),
-    
-    url(
-        regex=r'^logout/$',
-        view=logout,
-        kwargs={'next_page': '/accounts/login/'},
-        name='logout'
-    ),
+
+    url(r'^profile/$', profile, name='profile'),
+    url(r'^logout/$', logout_user, name='logout'),
+
     url(
         regex=r'^password/change/$',
         view=password_change,

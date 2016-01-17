@@ -27,39 +27,21 @@
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Registration</h1>
+					<h1 class="page-title">Personal Details</h1>
 				</header>
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3 class="thin text-center">Register a new account</h3>
+							<h3 class="thin text-center">Personal Details</h3>
 							<p class="text-center text-muted"> <a href="{% url 'signin' %}">Login</a> </p>
 							<hr>
-							<form action="{% url 'signup' %}"  method="post">{% csrf_token %}
-								<div class="top-margin">
-									<label>user Name</label>
-									<input type="text" id=username name="username" class="form-control">
-								</div>
-								<div class="top-margin">
-									<label>Email Address <span class="text-danger">*</span></label>
-									<input type="text" id=email name="email" class="form-control">
-								</div>
-
-								<div class="row top-margin">
-									<div class="col-sm-6">
-										<label>Password <span class="text-danger">*</span></label>
-										<input type="text" id=password name="password" class="form-control">
-									</div>
-									<div class="col-sm-6">
-										<label>Confirm Password <span class="text-danger">*</span></label>
-										<input type="text" id=password2 name="password2" class="form-control">
-									</div>
-									{{ errors }}
-								</div>
+							<form action="{% url 'profile' %}"  method="post">{% csrf_token %}
+								{{ user_profile.as_p }}
+								{% csrf_token %}
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">Register</button>
+										<button class="btn btn-action" type="submit">Submit</button>
 									</div>
 								</div>
 							</form>

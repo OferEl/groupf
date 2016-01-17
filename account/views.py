@@ -5,7 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import signup_form
-from django.contrib import messages 
+from django.contrib import messages
+from account.forms import profile_form
 
 
 
@@ -18,7 +19,6 @@ def signin(request):
     if request.user.is_authenticated():
         login_failed = False
     else:
-        logout(request)
         username = password = ''
         # Flag to keep track whether the login was invalid.
         login_failed = False
@@ -47,11 +47,33 @@ def signup(request):
             email    =request.POST['email']
             user = User.objects.create_user(username,email,password)
             l=user.save()
-            return render(request,'home.html',context_instance=RequestContext(request))
+            return render(request,'login_done.html',context_instance=RequestContext(request))
         else:
-            b= f.errors
-            return render(request,'signup.html',f.errors)
+            return render(request,'signup.html',{'errors': f.errors})
     else:
         return render(request,'signup.html')
 
     
+def profile(request):
+    if request.method == "POST":
+        profile_frm =profile_form(request.POST)
+        if  profile_frm.is_valid():
+            first_name =request.POST['first_name']
+            last_name =request.POST['last_name']
+            user_type =request.POST['user_type']
+            user_email =request.POST['user_email']
+            user_facebook =request.POST['user_type']
+            user_twitter =request.POST['user_type']
+            gender =request.POST['user_type']
+            l=profile_frm.save()
+            return render(request, "profile.html")
+        else:
+            return render(request, "profile.html")
+    else:
+        profile_frm =profile_form()
+        return render(request, "profile.html" , {'user_profile' : profile_frm})
+
+
+def logout_user(request):
+    logout(request)
+    return render(request, "home.html")

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from account.model import user_profile
 
 class signin_form(forms.Form):
     Username = forms.CharField(label='Your name', max_length=50)
@@ -15,7 +16,6 @@ class signup_form(forms.ModelForm):
 
     class Meta:
         model = User
-        #model.last_name
         fields = ['username', 'email', 'password']
     
     def clean_password2(self):
@@ -23,3 +23,9 @@ class signup_form(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
+
+class profile_form(forms.ModelForm):
+    class Meta:
+        model = user_profile
+        fields = ['first_name' ,'last_name' , 'user_type' ,'gender' , 'user_email' , 'user_facebook','user_twitter' ]
+

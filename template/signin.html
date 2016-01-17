@@ -48,14 +48,12 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Sign in to your account</h3>
-							<p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="{% url 'signin' %}">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+							<p class="text-center text-muted"> <a href="{% url 'signin' %}">Register</a>  </p>
 							<hr>
-							
 							<form action="{% url 'signin' %}"  method="post">{% csrf_token %}
 							    {% if next %}
                                  <input type="hidden" name="next" value="{{ next }}" />
                                 {% endif %}
-						
 								<div class="top-margin">
 									<label>Username/Email <span class="text-danger">*</span></label>
 									<input type="text" id="username" name="username" class="form-control">
@@ -67,9 +65,7 @@
                                     <p class="text-danger">Sorry, that login was invalid.  Please try again.</p>
                                     {% endif %}
 								</div>
-
 								<hr>
-
 								<div class="row">
 									<div class="col-lg-8">
 										<b><a href="">Forgot password?</a></b>
