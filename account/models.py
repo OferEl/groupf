@@ -19,8 +19,8 @@ class user_profile (models.Model):
     #city
     #תתתregistration_date  = models.DateField()
     user_email = models.EmailField()
-    user_facebook = models.SlugField(max_length=70)
-    user_twitter  = models.SlugField(max_length=70)
+    user_facebook = models.SlugField(max_length=70,null=True)
+    user_twitter  = models.SlugField(max_length=70,null=True)
     #user_pic =
     def __unicode__(self):
         return self.user_email
