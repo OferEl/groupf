@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from account.model import user_profile
+from account.models import Profile
 
 class signin_form(forms.Form):
     Username = forms.CharField(label='Your name', max_length=50)
@@ -24,8 +24,13 @@ class signup_form(forms.ModelForm):
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
 
-class profile_form(forms.ModelForm):
+class profileditform(forms.ModelForm):
     class Meta:
-        model = user_profile
+        model = Profile
         fields = ['first_name' ,'last_name' , 'user_type' ,'gender' , 'user_email' , 'user_facebook','user_twitter' ]
 
+
+class usereditform(forms.ModelForm):
+    class Meta:
+        model = User
+        fileds = ['username' , 'password']

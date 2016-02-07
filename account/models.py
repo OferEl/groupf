@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
 
-class user_profile (models.Model):
+class Profile (models.Model):
+
     USER_TYPE = (
         ('R', 'Regular'),
         ('V', 'Special'),
@@ -19,8 +20,8 @@ class user_profile (models.Model):
     #city
     #תתתregistration_date  = models.DateField()
     user_email = models.EmailField()
-    user_facebook = models.SlugField(max_length=70,null=True)
-    user_twitter  = models.SlugField(max_length=70,null=True)
+    user_facebook = models.CharField(max_length=70,null=True)
+    user_twitter  = models.CharField(max_length=70,null=True)
     #user_pic =
     def __unicode__(self):
         return self.user_email

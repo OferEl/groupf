@@ -1,13 +1,8 @@
 
 from django.conf.urls import patterns, url
-from running.views import running_page
+from running.views import PostListView
+
 
 urlpatterns = patterns('',
-#    
-    url(
-        regex='',
-        view=running_page,
-        name='running',
-    ),
-   
+    url(r'^post/$',PostListView.as_view(),name='running',),
 )

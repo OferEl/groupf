@@ -5,8 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import signup_form
-from django.contrib import messages
-from account.forms import profile_form
+from account.forms import profileditform ,usereditform
+from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 
 
@@ -45,33 +46,32 @@ def signup(request):
             password =request.POST['password']
             username =request.POST['username']
             email    =request.POST['email']
-            user = User.objects.create_user(username,email,password)
-            l=user.save()
+            new_user = User.objects.create_user(username,email,password)
+            l=new_user.save()
+            # Create the user profile
+            profile = Profile.objects.create(user=new_user)
             return render(request,'login_done.html',context_instance=RequestContext(request))
         else:
             return render(request,'signup.html',{'errors': f.errors})
     else:
         return render(request,'signup.html')
 
-    
+@login_required
 def profile(request):
     if request.method == "POST":
-        profile_frm =profile_form(request.POST)
-        if  profile_frm.is_valid():
-            first_name =request.POST['first_name']
-            last_name =request.POST['last_name']
-            user_type =request.POST['user_type']
-            user_email =request.POST['user_email']
-            user_facebook =request.POST['user_type']
-            user_twitter =request.POST['user_type']
-            gender =request.POST['user_type']
+        user_frm = usereditform(instance=request.user,data=request.POST)
+        profile_frm =profileditform(instance=request.user.profile,data=request.POST)
+        if  profile_frm.is_valid() and user_frm.is_valid():
             l=profile_frm.save()
-            return render(request, "profile.html")
+            m=user_frm.save()
         else:
-            return render(request, "profile.html")
+            return render(request, "profile.html",{'user_form': user_frm,'profile_form': profile_frm} )
     else:
-        profile_frm =profile_form()
-        return render(request, "profile.html" , {'user_profile' : profile_frm})
+        user_frm = usereditform(instance=request.user)
+        profile_frm =profileditform(instance=request.user.profile)
+
+    return render(request,"profile.html",{'user_form': user_frm,'profile_form': profile_frm})
+
 
 
 def logout_user(request):

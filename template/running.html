@@ -50,16 +50,13 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="{% url 'post' %}">My Post</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Portfolio</a>
+                        <a class="page-scroll" href="{% url 'post' %}">New Post</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="Search">Search</a>
                     </li>
                 </ul>
             </div>
@@ -127,97 +124,37 @@
 </div>  <!-- --end carousel -->    
 
 <div class="container">
-  <div class="well">
-      <div class="media">
-  		<div class="media-body">
-    		<h4 class="media-heading">Receta 1</h4>
-          <p class="text-left">By Francisco</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis </p>
-          <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-            <li>|</li>
-            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-            <li>|</li>
-            <li>
-               <span class="glyphicon glyphicon-star"></span>
+    {% for Post in object_list %}
+      <div class="well">
+         <div class="media">
+  		     <div class="media-body">
+    		      <h4 class="media-heading">{{ Post.post_title }}</h4>
+                     <p class="text-left">{{ Post.post_id }}</p>
+                        <p>{{ Post.post_desc }} </p>
+             <ul class="list-inline list-unstyled">
+  			     <li><span><i class="glyphicon glyphicon-calendar"></i> {{ Post.post_date|date }} </span></li>
+                 <li>|</li>
+                 <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+                 <li>|</li>
+                 <li>
+                   <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
-            </li>
-            <li>|</li>
-            <li>
+                 </li>
+                 <li>|</li>
+                <li>
             <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-              <span><i class="fa fa-facebook-square"></i></span>
-              <span><i class="fa fa-twitter-square"></i></span>
-              <span><i class="fa fa-google-plus-square"></i></span>
-            </li>
-			</ul>
-       </div>
-    </div>
-  </div>
-  <div class="well">
-      <div class="media">
-  		<div class="media-body">
-    		<h4 class="media-heading">Receta 2</h4>
-          <p class="text-left">By Francisco</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis </p>
-          <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-            <li>|</li>
-            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-            <li>|</li>
-            <li>
-               <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-            </li>
-            <li>|</li>
-            <li>
-            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-              <span><i class="fa fa-facebook-square"></i></span>
-              <span><i class="fa fa-twitter-square"></i></span>
-              <span><i class="fa fa-google-plus-square"></i></span>
-            </li>
-			</ul>
-       </div>
-    </div>
-  </div>
-  <div class="well">
-      <div class="media">
-  		<div class="media-body">
-    		<h4 class="media-heading">Receta 3</h4>
-          <p class="text-left">By Francisco</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis </p>
-          <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-            <li>|</li>
-            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-            <li>|</li>
-            <li>
-               <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-            </li>
-            <li>|</li>
-            <li>
-            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-              <span><i class="fa fa-facebook-square"></i></span>
-              <span><i class="fa fa-twitter-square"></i></span>
-              <span><i class="fa fa-google-plus-square"></i></span>
-            </li>
-			</ul>
-       </div>
-    </div>
-  </div>
-
+                  <span><i class="fa fa-facebook-square"></i></span>
+                  <span><i class="fa fa-twitter-square"></i></span>
+                  <span><i class="fa fa-google-plus-square"></i></span>
+                </li>
+			  </ul>
+            </div>
+         </div>
+      </div>
+    {% endfor %}
 </div>
  <!-- jQuery -->
     <script src="{{ STATIC_URL }}assets/js/jquery.js"></script>
